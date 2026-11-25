@@ -1,0 +1,16 @@
+pandas>=3.0
+scikit-learn>=1.9
+xgboost>=3.4
+shap>=0.54
+chromadb>=1.5
+langgraph>=1.2
+langchain-core>=1.8
+langchain-google-genai>=4.5
+fastapi>=0.165
+uvicorn>=0.54
+streamlit>=1.67
+python-dotenv>=1.0
+# dev
+pytest>=9.0
+httpx>=0.28
+langchain-groq>=1.2
