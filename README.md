@@ -2,7 +2,7 @@
 
 A chat assistant for a telecom retention team. You ask it a question in plain English, like "which customers are most likely to leave and what should we offer them?", and it answers using real customer data, a churn prediction model and the company's offer policies.
 
-I built it to practice the things I care about most in applied AI: classical ML that is properly validated, LLM agents that call tools, and retrieval over documents (RAG), all wired together into something a non-technical person could actually use.
+I built it to practice the things I care about most in applied AI: classical ML, LLM agents that call tools, and RAG, all together into something a non-technical person could actually use.
 
 ## What it does
 
@@ -38,7 +38,7 @@ The benchmark checks two things for every question: did the supervisor call the 
 
 ## Things I learned building it
 
-**The evaluation caught real bugs.** The first run scored 60%. Most failures turned out to be my scoring being too strict (an answer of 11.27% marked wrong because I expected 11.3, and the model writing customer ids with a special hyphen character). Once those were fixed, the interesting failure remained: on two questions the supervisor finished early and the final answer invented a retention offer from the model's general knowledge. I fixed that with a guardrail in code: any question about offers, eligibility, approvals or contact rules cannot finish until the offers agent has checked the policy documents. That one isn't left to the LLM's judgment.
+**The evaluation caught real bugs.** The first run scored 60%. Most failures turned out to be my scoring being too strict. Once those were fixed, this failure remained: on two questions the supervisor finished early and the final answer invented a retention offer from the model's general knowledge. I fixed that with a guardrail in code: any question about offers, eligibility, approvals or contact rules cannot finish until the offers agent has checked the policy documents. That one isn't left to the LLM's judgment.
 
 **Stored scores are out-of-fold.** Every customer's churn probability comes from 5-fold cross-validation, so no score was produced by a model that saw that customer during training. Scoring the training data directly would look better than it really is.
 
